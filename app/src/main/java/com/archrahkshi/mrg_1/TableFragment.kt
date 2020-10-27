@@ -17,7 +17,7 @@ const val LAST_NUMBER = "last_number"
 
 class TableFragment : Fragment() {
 
-    private var numbers = (1..100).toMutableList()
+    private val numbers = (1..100).toMutableList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +31,11 @@ class TableFragment : Fragment() {
         if (savedInstanceState != null)
             numbers.addAll(101..savedInstanceState.getInt(LAST_NUMBER))
 
-        updateTable()
+        updateTable(scrollDown = false)
 
         buttonAdd.setOnClickListener {
             numbers.apply { add(last() + 1) }
-            updateTable()
+            updateTable(scrollDown = true)
         }
     }
 
@@ -45,7 +45,7 @@ class TableFragment : Fragment() {
         outState.putInt(LAST_NUMBER, numbers.last())
     }
 
-    private fun updateTable() {
+    private fun updateTable(scrollDown: Boolean) {
         recyclerView.apply {
             adapter = NumberAdapter(numbers) {
                 fragmentManager?.beginTransaction()?.replace(
@@ -63,7 +63,9 @@ class TableFragment : Fragment() {
                 if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 3 else 4,
                 RecyclerView.VERTICAL,
                 false
-            )
+            ).apply {
+                if (scrollDown) scrollToPosition(numbers.size - 1)
+            }
         }
     }
 }
