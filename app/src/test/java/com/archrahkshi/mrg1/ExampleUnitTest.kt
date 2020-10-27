@@ -1,4 +1,4 @@
-package com.archrahkshi.mrg_1
+package com.archrahkshi.mrg1
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.archrahkshi.mrg_1
+package com.archrahkshi.mrg1
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

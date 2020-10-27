@@ -1,4 +1,4 @@
-package com.archrahkshi.mrg_1
+package com.archrahkshi.mrg1
 
 import android.content.res.Configuration
 import android.graphics.Color
@@ -14,10 +14,13 @@ import kotlinx.android.synthetic.main.fragment_table.*
 const val NUMBER = "number"
 const val COLOR = "color"
 const val LAST_NUMBER = "last_number"
+const val BASE_MAX_NUMBER = 100
+const val SPAN_COUNT_VERTICAL = 3
+const val SPAN_COUNT_HORIZONTAL = 4
 
 class TableFragment : Fragment() {
 
-    private val numbers = (1..100).toMutableList()
+    private val numbers = (1..BASE_MAX_NUMBER).toMutableList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +32,7 @@ class TableFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (savedInstanceState != null)
-            numbers.addAll(101..savedInstanceState.getInt(LAST_NUMBER))
+            numbers.addAll((BASE_MAX_NUMBER + 1)..savedInstanceState.getInt(LAST_NUMBER))
 
         updateTable(scrollDown = false)
 
@@ -61,9 +64,9 @@ class TableFragment : Fragment() {
             layoutManager = GridLayoutManager(
                 context,
                 if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
-                    3
+                    SPAN_COUNT_VERTICAL
                 else
-                    4,
+                    SPAN_COUNT_HORIZONTAL,
                 RecyclerView.VERTICAL,
                 false
             ).apply {
