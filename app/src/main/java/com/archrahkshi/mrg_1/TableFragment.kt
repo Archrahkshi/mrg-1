@@ -3,12 +3,10 @@ package com.archrahkshi.mrg_1
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_table.*
@@ -19,7 +17,7 @@ const val LAST_NUMBER = "last_number"
 
 class TableFragment : Fragment() {
 
-    private val numbers = (1..100).toMutableList()
+    private var numbers = (1..100).toMutableList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +42,7 @@ class TableFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt("lastNumber", numbers.last())
+        outState.putInt(LAST_NUMBER, numbers.last())
     }
 
     private fun updateTable() {
