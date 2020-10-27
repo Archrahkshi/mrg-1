@@ -60,7 +60,10 @@ class TableFragment : Fragment() {
             }
             layoutManager = GridLayoutManager(
                 context,
-                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 3 else 4,
+                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
+                    3
+                else
+                    4,
                 RecyclerView.VERTICAL,
                 false
             ).apply {
